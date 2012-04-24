@@ -1,0 +1,36 @@
+<project name="EthnoChat" default="dist" basedir=".">
+
+    <property file="build.properties"/>
+
+    <property name="src" location="src"/>
+    <property name="resources" location="res"/>
+    <property name="build" location="build"/>
+    <property name="dist" location="dist"/>
+
+    <target name="init">
+        <tstamp/>
+        <mkdir dir="${build}"/>
+      </target>
+
+    <target name="compile" depends="init" description="Compile the Java source">
+        <javac srcdir="${src}" destdir="${build}"/>
+    </target>
+
+    <target name="dist" depends="compile" description="Package for distribution" >
+        <mkdir dir="${dist}/lib"/>
+
+        <mkdir dir="${build}/res"/>
+        <copy todir="${build}/res">
+            <fileset dir="${resources}"/>
+        </copy>
+
+        <jar jarfile="${dist}/lib/ethnochat-${ethnochat.version}.jar"
+            basedir="${build}"
+            manifest="${src}/Manifest.mf"/>
+    </target>
+
+    <target name="clean" description="Clean">
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+    </target>
+</project>
