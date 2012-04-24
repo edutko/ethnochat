@@ -28,7 +28,7 @@ public class ResourceManager {
         try {
 
             controlRes = (PropertyResourceBundle)ResourceBundle.getBundle(
-                "controls");
+                "res/controls");
 
         } catch (MissingResourceException e) {
             throw new RuntimeException(
