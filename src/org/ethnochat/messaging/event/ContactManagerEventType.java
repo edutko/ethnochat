@@ -1,0 +1,15 @@
+package org.ethnochat.messaging.event;
+
+public enum ContactManagerEventType {
+
+    UNDEFINED,
+    CONTACT_SIGNED_ON,
+    CONTACT_SIGNED_OFF,
+    CONTACT_ADDED,
+    CONTACT_REMOVED,
+    CONTACT_STATUS_CHANGED,
+    CONTACT_GROUP_ADDED,
+    CONTACT_GROUP_REMOVED,
+    CONTACT_GROUP_CHANGED,
+    MESSAGING_SERVICE_CHANGED
+}
