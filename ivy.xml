@@ -1,0 +1,8 @@
+<ivy-module version="1.0">
+    <info organisation="org.ethnochat" module="ethnochat"/>
+    <dependencies>
+        <dependency org="org.slf4j" name="slf4j-api" rev="1.6.3" />
+        <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.6.3" />
+        <dependency org="org.apache" name="log4j" rev="1.2.16" />
+    </dependencies>
+</ivy-module>

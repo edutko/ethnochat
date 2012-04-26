@@ -16,8 +16,6 @@ public class ResourceManager {
 
         if (controlRes == null) {
             initialize();
-            DebuggingTools.println("getControlResources() was called before "
-                + "initialize().");
         }
 
         return controlRes;
@@ -27,8 +25,7 @@ public class ResourceManager {
 
         try {
 
-            controlRes = (PropertyResourceBundle)ResourceBundle.getBundle(
-                "res/controls");
+            controlRes = (PropertyResourceBundle)ResourceBundle.getBundle("res/controls");
 
         } catch (MissingResourceException e) {
             throw new RuntimeException(

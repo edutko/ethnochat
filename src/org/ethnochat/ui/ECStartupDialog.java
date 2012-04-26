@@ -15,8 +15,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import org.ethnochat.application.EthnoChatApp;
-import org.ethnochat.util.DebuggingTools;
 import org.ethnochat.util.ResourceManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
     The code for making the JInternalFrame behave like a modal dialog was
@@ -30,6 +31,7 @@ public class ECStartupDialog extends javax.swing.JInternalFrame {
 	private static final long serialVersionUID = 2995094305082400710L;
 
 	private final EthnoChatApp appInstance;
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     private ECParentFrame owner;
     private JRadioButton newProjectButton;
@@ -207,7 +209,7 @@ public class ECStartupDialog extends javax.swing.JInternalFrame {
                     } else if (source instanceof MenuComponent) {
                         ((MenuComponent)source).dispatchEvent(event);
                     } else {
-                        DebuggingTools.println("Unable to dispatch: " + event);
+                        log.error("Unable to dispatch: " + event);
                     }
                 }
             } else {

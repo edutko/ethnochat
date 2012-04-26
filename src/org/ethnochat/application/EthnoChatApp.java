@@ -14,8 +14,9 @@ import org.ethnochat.plugin.PluginManager;
 import org.ethnochat.project.ConversationManager;
 import org.ethnochat.project.Project;
 import org.ethnochat.ui.ECParentFrame;
-import org.ethnochat.util.DebuggingTools;
 import org.ethnochat.util.ResourceManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 public class EthnoChatApp {
@@ -25,6 +26,7 @@ public class EthnoChatApp {
 
     private static EthnoChatApp theApp;
 
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
     private ECParentFrame mainWindow;
     private Properties properties;
     private Project currentProject;
@@ -51,11 +53,11 @@ public class EthnoChatApp {
             pushRecentProjectFile(projectFile);
             conversationManager.setProject(currentProject);
         } catch (IOException e) {
-            // TO DO: handle exception
+            // TODO: handle exception
             System.err.println("Error while opening project.");
             System.err.println(e.toString());
         } catch (SAXException e) {
-            // TO DO: handle exception
+            // TODO: handle exception
             System.err.println("Error while opening project.");
             System.err.println(e.toString());
         }
@@ -66,7 +68,7 @@ public class EthnoChatApp {
             currentProject.storeToFile();
             pushRecentProjectFile(currentProject.getFile());
         } catch (IOException e) {
-            // TO DO: handle exception
+            // TODO: handle exception
             System.err.println("Error while saving project.");
             System.err.println(e.toString());
         }
@@ -217,16 +219,6 @@ public class EthnoChatApp {
         os.close();
     }
 
-    private static void initializeDebugLogging() {
-        String debugVariableValue = System.getenv("ETHNOCHAT_DEBUG");
-        if (debugVariableValue != null) {
-            try {
-                int debugLevel = Integer.valueOf(debugVariableValue);
-                DebuggingTools.initializeDebugLogging(debugLevel);
-            } catch (NumberFormatException e) {}
-        }
-    }
-
     private static void loadPlugins(File[] directories) {
         PluginManager pluginManager = PluginManager.getInstance();
         for (int i = 0; i < directories.length; i++) {
@@ -244,7 +236,6 @@ public class EthnoChatApp {
     public static void main(String[] args) {
 
         try {
-            initializeDebugLogging();
             ResourceManager.initialize();
             File[] defaultPluginDirectories =
                 { new File("plugins/messaging") };
